@@ -105,11 +105,22 @@
   .hero {
     position: relative;
     min-height: 100vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 0 5%;
     overflow: hidden;
     background: var(--black);
+    gap: 3rem;
+  }
+
+  .hero-illustration {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
   }
 
   .hero-bg-lines {
@@ -221,19 +232,18 @@
   .btn-secondary::after { content: '↓'; }
 
   .hero-stats {
-    position: absolute;
-    right: 5%;
-    bottom: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem;
     z-index: 2;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
   }
 
   .stat {
-    text-align: right;
-    border-right: 3px solid var(--orange);
-    padding-right: 1rem;
+    text-align: left;
+    border-left: 3px solid var(--orange);
+    padding-left: 1rem;
   }
 
   .stat-num {
@@ -668,12 +678,12 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-illustration { display: none; }
     .services-grid { grid-template-columns: 1fr; }
     .about { grid-template-columns: 1fr; gap: 3rem; }
     .quote-inner { grid-template-columns: 1fr; gap: 3rem; }
     .form-grid { grid-template-columns: 1fr; }
-    .hero-stats { position: static; flex-direction: row; flex-wrap: wrap; margin-top: 3rem; }
-    .stat { text-align: left; border-right: none; border-left: 3px solid var(--orange); padding-left: 1rem; padding-right: 0; }
     footer { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -717,6 +727,155 @@
         <div class="stat-label">Licensed & Insured</div>
       </div>
     </div>
+  </div>
+
+  <!-- CONSTRUCTION ILLUSTRATION -->
+  <div class="hero-illustration">
+    <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a1a1a"/>
+          <stop offset="100%" stop-color="#0d0d0d"/>
+        </linearGradient>
+        <linearGradient id="craneGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#F26522"/>
+          <stop offset="100%" stop-color="#C04E10"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Ground -->
+      <rect x="0" y="430" width="480" height="90" fill="#111"/>
+      <rect x="0" y="428" width="480" height="4" fill="#F26522" opacity="0.6"/>
+
+      <!-- Ground detail - dirt/gravel -->
+      <rect x="20" y="435" width="60" height="8" rx="2" fill="#1e1e1e"/>
+      <rect x="100" y="438" width="40" height="6" rx="2" fill="#1e1e1e"/>
+      <rect x="300" y="436" width="80" height="7" rx="2" fill="#1e1e1e"/>
+      <rect x="400" y="439" width="50" height="5" rx="2" fill="#1e1e1e"/>
+
+      <!-- BUILDING UNDER CONSTRUCTION (left) -->
+      <!-- Foundation -->
+      <rect x="40" y="380" width="180" height="50" fill="#222" stroke="#333" stroke-width="1"/>
+      <!-- Floor 1 -->
+      <rect x="50" y="290" width="160" height="90" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="1"/>
+      <!-- Floor 1 windows -->
+      <rect x="65" y="305" width="35" height="45" fill="#0d0d0d" stroke="#F26522" stroke-width="1.5" opacity="0.8"/>
+      <rect x="115" y="305" width="35" height="45" fill="#0d0d0d" stroke="#F26522" stroke-width="1.5" opacity="0.8"/>
+      <rect x="165" y="305" width="35" height="45" fill="#0d0d0d" stroke="#F26522" stroke-width="1.5" opacity="0.8"/>
+      <!-- Floor 2 partial (under construction) -->
+      <rect x="50" y="220" width="160" height="70" fill="#161616" stroke="#2e2e2e" stroke-width="1"/>
+      <!-- Floor 2 windows -->
+      <rect x="65" y="232" width="35" height="38" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+      <rect x="115" y="232" width="35" height="38" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+      <rect x="165" y="232" width="35" height="38" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+      <!-- Floor 3 skeleton frame -->
+      <rect x="50" y="180" width="160" height="40" fill="none" stroke="#2e2e2e" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <!-- Vertical rebar/scaffolding -->
+      <line x1="50" y1="180" x2="50" y2="220" stroke="#F26522" stroke-width="2.5" opacity="0.7"/>
+      <line x1="130" y1="160" x2="130" y2="220" stroke="#F26522" stroke-width="2.5" opacity="0.7"/>
+      <line x1="210" y1="180" x2="210" y2="220" stroke="#F26522" stroke-width="2.5" opacity="0.7"/>
+      <!-- Horizontal scaffolding -->
+      <line x1="40" y1="180" x2="220" y2="180" stroke="#F26522" stroke-width="2" opacity="0.5"/>
+      <line x1="40" y1="200" x2="220" y2="200" stroke="#444" stroke-width="1" opacity="0.5"/>
+
+      <!-- SCAFFOLDING STRUCTURE -->
+      <!-- Left scaffold post -->
+      <rect x="28" y="150" width="6" height="280" fill="#333"/>
+      <!-- Right scaffold post -->
+      <rect x="222" y="150" width="6" height="130" fill="#333"/>
+      <!-- Scaffold planks -->
+      <rect x="22" y="176" width="215" height="8" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="0.5"/>
+      <rect x="22" y="256" width="215" height="8" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="0.5"/>
+      <rect x="22" y="336" width="215" height="8" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="0.5"/>
+      <!-- Scaffold diagonals -->
+      <line x1="28" y1="176" x2="228" y2="256" stroke="#2e2e2e" stroke-width="1.5"/>
+      <line x1="228" y1="176" x2="28" y2="256" stroke="#2e2e2e" stroke-width="1.5"/>
+      <line x1="28" y1="256" x2="228" y2="336" stroke="#2e2e2e" stroke-width="1.5"/>
+      <line x1="228" y1="256" x2="28" y2="336" stroke="#2e2e2e" stroke-width="1.5"/>
+
+      <!-- TOWER CRANE -->
+      <!-- Mast -->
+      <rect x="318" y="80" width="12" height="350" fill="#2a2a2a" stroke="#3a3a3a" stroke-width="1"/>
+      <!-- Mast cross braces -->
+      <line x1="318" y1="130" x2="330" y2="160" stroke="#3a3a3a" stroke-width="1.5"/>
+      <line x1="330" y1="130" x2="318" y2="160" stroke="#3a3a3a" stroke-width="1.5"/>
+      <line x1="318" y1="200" x2="330" y2="230" stroke="#3a3a3a" stroke-width="1.5"/>
+      <line x1="330" y1="200" x2="318" y2="230" stroke="#3a3a3a" stroke-width="1.5"/>
+      <line x1="318" y1="270" x2="330" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+      <line x1="330" y1="270" x2="318" y2="300" stroke="#3a3a3a" stroke-width="1.5"/>
+      <!-- Crane jib (arm) -->
+      <rect x="220" y="76" width="210" height="8" fill="#F26522" opacity="0.9"/>
+      <!-- Counter jib -->
+      <rect x="330" y="76" width="80" height="6" fill="#C04E10" opacity="0.8"/>
+      <!-- Jib support cables -->
+      <line x1="324" y1="60" x2="220" y2="84" stroke="#555" stroke-width="1.5"/>
+      <line x1="324" y1="60" x2="290" y2="84" stroke="#555" stroke-width="1.5"/>
+      <line x1="324" y1="60" x2="430" y2="82" stroke="#555" stroke-width="1.5"/>
+      <!-- Crane tower top -->
+      <polygon points="318,50 330,50 335,80 313,80" fill="#F26522" opacity="0.9"/>
+      <!-- Hook cable -->
+      <line x1="280" y1="84" x2="280" y2="160" stroke="#888" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <!-- Hook -->
+      <rect x="273" y="160" width="14" height="8" rx="2" fill="#aaa"/>
+      <path d="M277 168 Q274 178 280 178 Q286 178 283 168" fill="none" stroke="#aaa" stroke-width="2"/>
+      <!-- Load on hook -->
+      <rect x="262" y="178" width="36" height="24" fill="#333" stroke="#F26522" stroke-width="1.5" opacity="0.9"/>
+
+      <!-- CONSTRUCTION WORKER (right side) -->
+      <!-- Body -->
+      <rect x="390" y="345" width="22" height="40" rx="3" fill="#F26522"/>
+      <!-- Head -->
+      <circle cx="401" cy="336" r="12" fill="#c8956c"/>
+      <!-- Hard hat -->
+      <ellipse cx="401" cy="328" rx="14" ry="6" fill="#F26522"/>
+      <rect x="389" y="326" width="24" height="5" rx="2" fill="#C04E10"/>
+      <!-- Arms -->
+      <rect x="370" y="348" width="20" height="7" rx="3" fill="#F26522" transform="rotate(-20,390,352)"/>
+      <rect x="412" y="345" width="20" height="7" rx="3" fill="#F26522" transform="rotate(15,412,349)"/>
+      <!-- Legs -->
+      <rect x="390" y="382" width="9" height="30" rx="3" fill="#222"/>
+      <rect x="402" y="382" width="9" height="30" rx="3" fill="#222"/>
+      <!-- Boots -->
+      <rect x="387" y="408" width="14" height="8" rx="2" fill="#111"/>
+      <rect x="399" y="408" width="14" height="8" rx="2" fill="#111"/>
+      <!-- Tool belt -->
+      <rect x="388" y="372" width="26" height="5" rx="1" fill="#8B6914"/>
+
+      <!-- MATERIAL PILE -->
+      <rect x="350" y="400" width="50" height="16" rx="2" fill="#333" stroke="#444" stroke-width="0.5"/>
+      <rect x="355" y="388" width="40" height="14" rx="2" fill="#2e2e2e" stroke="#444" stroke-width="0.5"/>
+      <rect x="360" y="378" width="30" height="12" rx="2" fill="#2a2a2a" stroke="#444" stroke-width="0.5"/>
+
+      <!-- HARD HAT on ground -->
+      <ellipse cx="80" cy="432" rx="18" ry="6" fill="#F26522" opacity="0.7"/>
+      <rect x="64" y="428" width="32" height="5" rx="2" fill="#C04E10" opacity="0.7"/>
+
+      <!-- WHEELBARROW -->
+      <path d="M430 415 Q440 400 460 400 L460 415 Z" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
+      <circle cx="432" cy="418" r="6" fill="#222" stroke="#555" stroke-width="1.5"/>
+      <line x1="438" y1="415" x2="470" y2="408" stroke="#444" stroke-width="2"/>
+      <line x1="438" y1="418" x2="470" y2="420" stroke="#444" stroke-width="2"/>
+
+      <!-- Glow / orange light effect on building -->
+      <rect x="40" y="150" width="185" height="280" fill="url(#skyGrad)" opacity="0.2"/>
+
+      <!-- DUST/PARTICLES -->
+      <circle cx="160" cy="175" r="3" fill="#F26522" opacity="0.4"/>
+      <circle cx="200" cy="155" r="2" fill="#F26522" opacity="0.3"/>
+      <circle cx="100" cy="165" r="2" fill="#F26522" opacity="0.25"/>
+      <circle cx="240" cy="170" r="1.5" fill="#F26522" opacity="0.2"/>
+
+      <!-- Stars/lights in sky -->
+      <circle cx="50" cy="40" r="1.5" fill="#ffffff" opacity="0.3"/>
+      <circle cx="120" cy="20" r="1" fill="#ffffff" opacity="0.2"/>
+      <circle cx="350" cy="30" r="1.5" fill="#ffffff" opacity="0.25"/>
+      <circle cx="440" cy="15" r="1" fill="#ffffff" opacity="0.2"/>
+      <circle cx="30" cy="100" r="1" fill="#ffffff" opacity="0.15"/>
+      <circle cx="460" cy="55" r="1.5" fill="#ffffff" opacity="0.2"/>
+
+      <!-- Orange glow behind crane -->
+      <ellipse cx="324" cy="80" rx="40" ry="20" fill="#F26522" opacity="0.06"/>
+    </svg>
   </div>
 </section>
 
@@ -853,7 +1012,7 @@
 <footer>
   <div>
     <div class="footer-logo">Southern <span>Construction</span></div>
-    <p style="margin-top: 0.4rem;">© 2025 Southern Construction · Speedway, Indianapolis, IN</p>
+    <p style="margin-top: 0.4rem;">© 2025 Southern Construction · Speedway, Indianapolis, IN · southecon.com</p>
   </div>
   <ul class="footer-links">
     <li><a href="#services">Services</a></li>
